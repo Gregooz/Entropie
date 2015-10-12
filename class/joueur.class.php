@@ -1,20 +1,21 @@
 <?php
 
 
-  class pion{
+  class joueur{
 
-    private $couleur;
+    private $pseudo;
+    private $pions;
 
 
 
-  function __construct($coul){
-    $this -> couleur = $coul;
+  function __construct($nom){
+    $this -> pseudo = $nom;
   }
 
 
 
-  function getCouleur(){
-    return $this -> $couleur;
+  function getPseudo(){
+    return $this -> $pseudo;
   }
 
 
