@@ -4,7 +4,6 @@
   class joueur{
 
     private $pseudo;
-    private $pions;
 
 
 
