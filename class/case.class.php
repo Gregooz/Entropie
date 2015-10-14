@@ -12,6 +12,11 @@
 			$this -> positionY = $Y;
 			$this -> pion = $pi;
 		}
+
+		function getPion()
+		{
+			return $this -> pion;
+		}
 	}
 
 
