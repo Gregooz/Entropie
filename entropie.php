@@ -2,7 +2,7 @@
 
 if(isset($_GET['var1']) == True){
 
-echo "<table border="."1px". ">";
+echo "<div align=center><table border="."1px". ">";
 
 for($i=0;$i<5;$i++){
 	$y=0;
@@ -35,11 +35,9 @@ for($i=0;$i<5;$i++){
 
 
 }
-echo "</table>";
+echo "</table></div>";
 
 }
 
 
 ?>
-
-
