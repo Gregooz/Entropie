@@ -4,17 +4,23 @@
   class pion{
 
     private $couleur;
+    private $joueur;
 
 
 
-  function __construct($coul){
+  function __construct($coul, $j){
     $this -> couleur = $coul;
+    $this -> joueur = $j;
   }
 
 
 
   function getCouleur(){
-    return $this -> $couleur;
+    return $this -> couleur;
+  }
+	  
+  function getJoueur(){
+	  return $this->joueur;
   }
 
 
