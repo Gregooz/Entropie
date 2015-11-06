@@ -18,6 +18,10 @@
   function getCouleur(){
     return $this -> couleur;
   }
+	  
+  function getJoueur(){
+	  return $this->joueur;
+  }
 
 
 
