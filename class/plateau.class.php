@@ -175,7 +175,7 @@ function affichage(){
 						$plateauhtml = $plateauhtml . "\n <td width=\"100px\" height=\"100px\"align=\"center\"> <a href=?var1=".$i.$x."><img src=".$this->getJoueurJoue()->getNum(). ".jpg height=\"90px\" width=\"90px\"> </a></td>";
 					}
 					else if($this->plateau[$i][$x]-> getPion()->getJoueur() == $this->getJoueurNonJoue()){
-						$plateauhtml = $plateauhtml . "\n <td width=\"100px\" height=\"100px\"align=\"center\"> <img src=".$this->getJoueurNonJoue()->getNum(). ".jpg height=\"90px\" width=\"90px\"> </a></td>";	
+						$plateauhtml = $plateauhtml . "\n <td width=\"100px\" height=\"100px\"align=\"center\"> <img src=".$this->getJoueurNonJoue()->getNum(). ".jpg height=\"70px\" width=\"70px\"> </a></td>";	
 					}
 					else {
 						$plateauhtml = $plateauhtml . "\n <td width=\"100px\" height=\"100px\"align=\"center\"></td>";
@@ -205,8 +205,11 @@ function affichage(){
 				
 				if( isset($_GET['var1']) == true && isset($_GET['var2']) == false ){
 				
-					if($this->plateau[$z][$x]-> getPion()->getJoueur()==null){
-						$plateauhtml = $plateauhtml . "\n <td width=\"100px\" height=\"100px\"align=\"center\"> <a href= ?var1=".$_GET['var1'] ."&var2=". $z.$x .">libre</a></td>";
+					if($this->plateau[$z][$x]-> getPion()->getJoueur()==null && $this->getJoueurJoue() == $this->joueur1){
+						$plateauhtml = $plateauhtml . "\n <td width=\"100px\" height=\"100px\"align=\"center\"> <a href= ?var1=".$_GET['var1'] ."&var2=". $z.$x ."><img src=1_libre.jpg height=\"90px\" width=\"90px\"></a></td>";
+					}
+					else if($this->plateau[$z][$x]-> getPion()->getJoueur()==null && $this->getJoueurJoue() == $this->joueur2){
+						$plateauhtml = $plateauhtml . "\n <td width=\"100px\" height=\"100px\"align=\"center\"> <a href= ?var1=".$_GET['var1'] ."&var2=". $z.$x ."><img src=2_libre.jpg height=\"90px\" width=\"90px\"></a></td>";
 					}
 					else if($this->plateau[$z][$x]-> getPion()->getJoueur() == $this->joueur2){
 						$plateauhtml = $plateauhtml . "\n <td width=\"100px\" height=\"100px\" align=\"center\"> <img src=2.jpg height=\"90px\" width=\"90px\"></td>";	
