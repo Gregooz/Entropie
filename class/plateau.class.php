@@ -185,7 +185,7 @@ function affichage(){
 	}
 
 	$plateauhtml = $plateauhtml . "</table>";
-	$plateauhtml = $plateauhtml . "<form  action=\"entropie.php?click=1\" method=\"post\"><input type=\"submit\" value=\"Reinitialiser\"></form>";
+	$plateauhtml = $plateauhtml . "<form  action=\"entropie.php\" method=\"post\"><input name=\"click\" type=\"submit\" value=\"Reinitialiser\"></form>";
 
 	return $plateauhtml;
 	

@@ -4,7 +4,11 @@ session_start();
 require_once('class/joueur.class.php');
 require_once('class/plateau.class.php');
 
-if(!isset($_SESSION['plateau']) || isset($_GET["click"])){
+if(isset($_POST["click"])){
+	unset($_SESSION['plateau']);
+}
+
+if(!isset($_SESSION['plateau'])){
 $j1 = new joueur("Noé", 1);
 $j2 = new joueur("Greg", 2);
 $j1->setJoue(true);
@@ -16,7 +20,9 @@ else{
 }
 
 
-echo "est isolé ? : " . $p->estIsolee($p->getCase(1, 1)) . "<br>";
+
+
+// echo "est isolé ? : " . $p->estIsolee($p->getCase(1, 1)) . "<br>";
 
 
 
