@@ -160,29 +160,11 @@ function __construct($j1, $j2){
 			}	
 		}  
 		return $tab;
-	  }
-	  
-	  function test($joueur){
-		  if(empty($this->listePionIsole($joueur))){
-			  return "vide";
-		  }
-		  else{
-			  echo $this->listePionIsole($joueur)[0]->getX();
-			  echo $this->listePionIsole($joueur)[0]->getY();
-			  echo $this->listePionIsole($joueur)[0]->getPion()->getJoueur()->getPseudo();
-			  return "pas vide";
-		  }
-	  }
-	 
-		  
-	
-	  
-	  
-	  
+	  }	  
 
 function affichage(){
 
-	$plateauhtml = "<table border="."1px".">";
+	$plateauhtml = "<table border=\"1px\" >";
 	
 	for($i=0;$i<5;$i++){
 		$y=0;
@@ -190,19 +172,20 @@ function affichage(){
 			for($x=0;$x<5;$x++){
 				if( isset($_GET['var1'])==false || isset($_GET['var1'])==true && isset($_GET['var2'])==true){
 					if($this->plateau[$i][$x]-> getPion()-> getJoueur() == $this->getJoueurJoue()){
-						$plateauhtml = $plateauhtml . "\n <td width="."100px height="."100px"."> <a href=?var1=".$i.$x." > <img src=".$this->getJoueurJoue()->getNum(). ".jpg height=90 width=90> </a>" . "</td>";
+						$plateauhtml = $plateauhtml . "\n <td width=\"100px\" height=\"100px\"align=\"center\"> <a href=?var1=".$i.$x."><img src=".$this->getJoueurJoue()->getNum(). ".jpg height=\"90px\" width=\"90px\"> </a></td>";
 					}
 					else if($this->plateau[$i][$x]-> getPion()->getJoueur() == $this->getJoueurNonJoue()){
-						$plateauhtml = $plateauhtml . "\n <td width="."100px height="."100px"."> <img src=".$this->getJoueurNonJoue()->getNum(). ".jpg height=90 width=90> </a>" . "</td>";	
+						$plateauhtml = $plateauhtml . "\n <td width=\"100px\" height=\"100px\"align=\"center\"> <img src=".$this->getJoueurNonJoue()->getNum(). ".jpg height=\"90px\" width=\"90px\"> </a></td>";	
 					}
 					else {
-						$plateauhtml = $plateauhtml . "\n <td width="."100px height="."100px> </td>";
+						$plateauhtml = $plateauhtml . "\n <td width=\"100px\" height=\"100px\"align=\"center\"></td>";
 					}
 				}
 		}
 	}
 
 	$plateauhtml = $plateauhtml . "</table>";
+	$plateauhtml = $plateauhtml . "<form  action=\"entropie.php?click=1\" method=\"post\"><input type=\"submit\" value=\"Reinitialiser\"></form>";
 
 	return $plateauhtml;
 	
@@ -213,7 +196,7 @@ function affichage(){
 
   function affichage2(){
 	  
-	  $plateauhtml = "<table border=1px>";
+	  $plateauhtml = "<table border=\"1px\">";
 
 	for($z=0;$z<5;$z++){
 	
@@ -223,16 +206,16 @@ function affichage(){
 				if( isset($_GET['var1']) == true && isset($_GET['var2']) == false ){
 				
 					if($this->plateau[$z][$x]-> getPion()->getJoueur()==null){
-						$plateauhtml = $plateauhtml . "\n <td width="."100px height="."100px"."> <a href="."?var1=".$_GET['var1'] ."&var2=". $z.$x ." >  libre </a>" . "</td>";
+						$plateauhtml = $plateauhtml . "\n <td width=\"100px\" height=\"100px\"align=\"center\"> <a href= ?var1=".$_GET['var1'] ."&var2=". $z.$x .">libre</a></td>";
 					}
 					else if($this->plateau[$z][$x]-> getPion()->getJoueur() == $this->joueur2){
-						$plateauhtml = $plateauhtml . "\n <td width="."100px height="."100px"."> <img src=2.jpg height=90 width=90>" . "</td>";	
+						$plateauhtml = $plateauhtml . "\n <td width=\"100px\" height=\"100px\" align=\"center\"> <img src=2.jpg height=\"90px\" width=\"90px\"></td>";	
 					}
 					else if($this->plateau[$z][$x]-> getPion()->getJoueur() == $this->joueur1){
-						$plateauhtml = $plateauhtml . "\n <td width="."100px height="."100px"."> <img src=1.jpg height=90 width=90>" . "</td>";	
+						$plateauhtml = $plateauhtml . "\n <td width=\"100px\" height=\"100px\"align=\"center\"> <img src=1.jpg height=\"90px\" width=\"90px\"></td>";	
 					}
 					else {
-						$plateauhtml = $plateauhtml . "\n <td width="."100px height="."100px>" . $this-> plateau[$z][$x]-> getPion()-> getCouleur() . "</td>";
+						$plateauhtml = $plateauhtml . "\n <td width=\"100px\" height=\"100px\"align=\"center\">" . $this-> plateau[$z][$x]-> getPion()-> getCouleur() . "</td>";
 					}
 				}
 			}
