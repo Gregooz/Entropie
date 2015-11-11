@@ -31,7 +31,12 @@
   }
   
   function getNum(){
-	  return $this->num;
+	  if($this->num == null){
+		return 0;
+	  }
+	  else{
+		  return $this->num;
+	  }
   }
 
 

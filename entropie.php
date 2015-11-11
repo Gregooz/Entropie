@@ -1,16 +1,13 @@
 <?php
 session_start();
 
+
 require_once('class/joueur.class.php');
 require_once('class/plateau.class.php');
 
-if(isset($_POST["click"])){
-	unset($_SESSION['plateau']);
-}
-
 if(!isset($_SESSION['plateau'])){
-$j1 = new joueur("Noé", 1);
-$j2 = new joueur("Greg", 2);
+$j1 = new joueur("noe", 1);
+$j2 = new joueur("greg", 2);
 $j1->setJoue(true);
 $p = new plateau($j1, $j2);
 $_SESSION['plateau'] = serialize($p);
@@ -22,18 +19,18 @@ else{
 
 
 
-// echo "est isolé ? : " . $p->estIsolee($p->getCase(1, 1)) . "<br>";
+
 
 
 
 
 
 if(isset($_GET['var1'])==true && isset($_GET['var2'])==true){
-	$a = substr($_GET['var1'], 0, 1);
-	$b = substr($_GET['var1'], 1);
+	$x = substr($_GET['var1'], 0, 1);
+	$y = substr($_GET['var1'], 1);
 	$z = substr($_GET['var2'], 0, 1);
 	$w = substr($_GET['var2'], 1);
-	$p->setPion($z, $w, $p->getPion($a, $b));
+	$p->setPion($z, $w, $p->getPion($x, $y));
 	$p->toursuivant();
 	$_SESSION['plateau'] = serialize($p);
 	echo $p->affichage();
@@ -48,4 +45,10 @@ else{
 	echo $p->affichage();
 }
 
+
+
+
+
 ?>
+
+

@@ -11,20 +11,20 @@
 			$this -> positionX = $X;
 			$this -> positionY = $Y;
 			$this -> pion = $pi;
-		}
-
+		}		
+		
 		function getX(){
-			return $this->positionX;
+			return $this->positionY;
 		}
 		
 		function getY(){
-			return $this->positionY;
+			return $this->positionX;
 		}
 		
 		
 		function getPion(){
 			if($this-> pion == null){
-				return  new Pion(null, null, new Joueur(null, 0));
+				return "null";
 			}
 			else{
 				return $this -> pion;
