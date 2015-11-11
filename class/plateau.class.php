@@ -296,30 +296,57 @@ function __construct($j1, $j2){
 		  return false;
 	  }
 	  
-	  
-	  
-	  
-	  function test($joueur){
-		  if(empty($this->listePionIsole($joueur))){
-			  return "vide";
-		  }
-		  else{
-			  echo $this->listePionIsole($joueur)[0]->getX();
-			  echo $this->listePionIsole($joueur)[0]->getY();
-			  echo $this->listePionIsole($joueur)[0]->getPion()->getJoueur()->getPseudo();
-			  return "pas vide";
-		  }
-	  }
 	 
-		  
+	function CompareTab($tab_isole, $tab2){
+		$nb = 0;
+		for($i=0;$i<count($tab2);$i++){
+			for($j=0;$j<count($tab_isole);$j++){
+				if($tab_isole[$j] == $tab2[$i]){
+					$tab3[$nb++] = $tab_isole[$j];
+				}
+			}
+		}
+		return $tab3;
+	}
 	
-	  
-	  
+	function casePionIsole($case){
+		
+		$nb=0;
+		$compteur=0;
+		$cont=0;
+		$x = $case->getX();
+		$y = $case->getY();
+		
+		for($i=0;$i<3;$i++){
+			for($j=0;$j<3;$j++){
+				$w = $y-1+$j;
+				$z = $x-1+$i;
+				if($w > -1 && $w < 5 && $z > -1 && $z < 5 && $this->plateau[$w][$z]->getPion() == "null" ){
+					$tab[$nb++]=$this->plateau[$w][$z];
+				}				
+			}
+		}
+		return $tab;
+	}
+	
+	
+	
+	
+	
+	
 	  
 
 function affichage(){
+	
+	//Un piont est isolé ?
+	if($this->listePionIsole($this->getJoueurJoue())[0] == null){
+		$poinisole = false;
+	}
+	else{
+		$pionisole = true;
+	}
 
-	$plateauhtml = "<table border="."1px".">";
+	$plateauhtml ="<link rel=stylesheet type=text/css href=style.css> <body> <div class=login> <div class=login-screen> <div class=app-title> <table border="."1px"." align=center>";
 	
 	for($i=0;$i<5;$i++){
 		$y=0;
@@ -337,11 +364,11 @@ function affichage(){
 						$tab2 = $this->listePionSeul($this->getJoueurJoue());
 						
 						if($tab2[0] != null && $this->caseExiste($tab2, $this->plateau[$i][$x]) == true ){
-							$plateauhtml = $plateauhtml . "\n <td width="."100px height="."100px><img src=".$this->getJoueurJoue()->getNum(). ".jpg height=90 width=90>" . "</td>";	
+							$plateauhtml = $plateauhtml . "\n <td width="."100px height="."100px><img src=".$this->getJoueurJoue()->getNum(). "_libre.jpg height=90 width=90>" . "</td>";	
 						}
 						
 						else if($this->deplacementPossible($this->plateau[$i][$x]) == "vide"){
-						$plateauhtml = $plateauhtml . "\n <td width="."100px height="."100px><img src=".$this->getJoueurJoue()->getNum(). ".jpg height=90 width=90>" . "</td>";	
+						$plateauhtml = $plateauhtml . "\n <td width="."100px height="."100px><img src=".$this->getJoueurJoue()->getNum(). "_libre.jpg height=90 width=90>" . "</td>";	
 						}
 						else{
 						$plateauhtml = $plateauhtml . "\n <td width="."100px height="."100px"."><a href="."?var1=".$x.$i.">" ."<img src=".$this->getJoueurJoue()->getNum(). ".jpg height=90 width=90></a>" . "</td>";
@@ -349,7 +376,7 @@ function affichage(){
 					}
 							
 					else if($this->plateau[$i][$x]-> getPion()->getJoueur() == $this->getJoueurNonJoue()){
-						$plateauhtml = $plateauhtml . "\n <td width="."100px height="."100px"."> <img src=".$this->getJoueurNonJoue()->getNum(). ".jpg height=90 width=90> </a>" . "</td>";	
+						$plateauhtml = $plateauhtml . "\n <td width="."100px height="."100px"."> <img src=".$this->getJoueurNonJoue()->getNum(). "_libre.jpg height=90 width=90> </a>" . "</td>";	
 					}
 					else {
 						$plateauhtml = $plateauhtml . "\n <td width="."100px height="."100px> </td>";
@@ -358,7 +385,9 @@ function affichage(){
 		}
 	}
 
-	$plateauhtml = $plateauhtml . "</table>";
+	$plateauhtml = $plateauhtml . "</body></table> <br><br>";
+	$plateauhtml = $plateauhtml . "<form  action=\"entropie.php\" method=\"post\"><input class=btn btn-primary btn-large btn-block name=\"click\" type=\"submit\" value=\"Reinitialiser\"></form> </div> </div> </div>";
+
 
 	return $plateauhtml;
 	
@@ -384,17 +413,17 @@ function affichage(){
 						
 						$tab = $this->deplacementPossible($this->getCase($m, $n));
 						if(!empty($tab) && $this->caseExiste($tab, $this->getCase($x, $z))){
-						$plateauhtml = $plateauhtml . "\n <td width="."100px height="."100px"."> <a href="."?var1=".$_GET['var1'] ."&var2=". $x.$z ." >  libre </a>" . "</td>";
+						$plateauhtml = $plateauhtml . "\n <td width="."100px height="."100px"."> <a href="."?var1=".$_GET['var1'] ."&var2=". $x.$z ." >  <img src=".$this->getJoueurJoue()->getNum() ."_libre.jpg height=90 width=90></img> </a>" . "</td>";
 						}
 						else{
 						$plateauhtml = $plateauhtml . "\n <td width="."100px height="."100px".">" . "</td>";	
 						}
 					}
-					else if($this->plateau[$z][$x]-> getPion()->getJoueur() == $this->joueur2){
-						$plateauhtml = $plateauhtml . "\n <td width="."100px height="."100px"."> <img src=2.jpg height=90 width=90>" . "</td>";	
+					else if($this->plateau[$z][$x]-> getPion()->getJoueur() == $this->getJoueurJoue()){
+						$plateauhtml = $plateauhtml . "\n <td width="."100px height="."100px"."> <img src=".$this->getJoueurJoue()->getNum().".jpg height=90 width=90>" . "</td>";	
 					}
-					else if($this->plateau[$z][$x]-> getPion()->getJoueur() == $this->joueur1){
-						$plateauhtml = $plateauhtml . "\n <td width="."100px height="."100px"."> <img src=1.jpg height=90 width=90>" . "</td>";	
+					else if($this->plateau[$z][$x]-> getPion()->getJoueur() == $this->getJoueurNonJoue()){
+						$plateauhtml = $plateauhtml . "\n <td width="."100px height="."100px"."> <img src=".$this->getJoueurNonJoue()->getNum()."_libre.jpg height=90 width=90>" . "</td>";	
 					}
 					else {
 						$plateauhtml = $plateauhtml . "\n <td width="."100px height="."100px>" . $this-> plateau[$z][$x]-> getPion()-> getCouleur() . "</td>";
