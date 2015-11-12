@@ -1,4 +1,4 @@
-# Entropie	
+# Entropie - Règles	
 --------------------	
 
 
@@ -41,7 +41,7 @@ comme voisin un pion adverse.
 
 Sur ce Git est présent un script PHP modélisant le jeu de l'entropie.	
 	
-	
+#####[Démo : Entropie](http://supern0n0.xyz/Entropie/entropie.php)	
 	
 	
 		
