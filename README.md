@@ -34,6 +34,12 @@ comme voisin un pion adverse.
 		
 [Retrouver l'ensembles des règles : jeuxstrategier.free.fr](http://jeuxstrategieter.free.fr/Entropie_complet.php)
 
+
+
+#Réalisation	
+--------------	
+
+Sur ce Git est présent un script PHP modélisant le jeu de l'entropie.
 		
 ------------------------------------------------------------	
 Noé Le Carduner && Grégoire Decamp.
