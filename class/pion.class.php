@@ -3,7 +3,6 @@
 
   class pion{
 
-    private $couleur;
     private $joueur;
 
 

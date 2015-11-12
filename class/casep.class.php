@@ -24,7 +24,7 @@
 		
 		function getPion(){
 			if($this-> pion == null){
-				return "null";
+				return 0;
 			}
 			else{
 				return $this -> pion;
