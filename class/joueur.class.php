@@ -9,7 +9,11 @@
 	private $couleur;
 
 
-
+	/**
+	 *Constructeur de la classe Joueur
+	 *@param $nom : Pseudo du joueur, $numero : identifiant du joueur, $couleur : Code (HTML) couleur du joueur
+	 *@return void
+	*/
   function __construct($nom, $numero,  $couleur){
     $this -> pseudo = $nom;
 	$this -> joue = false;
@@ -18,12 +22,20 @@
   }
 
 
-
+	/**
+	 *Renvoie le Pseudo du joueur
+	 *@param 
+	 *@return $pseudo : le Pseudo du joueur
+	*/
   function getPseudo(){
     return $this -> pseudo;
   }
 
-
+	/**
+	 *Permet de savoir si le joueur est actuellement en train de jouer
+	 *@param 
+	 *@return $joue : boolean 
+	*/
   function getJoue(){
 	  return $this-> joue;
   }

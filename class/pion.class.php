@@ -7,15 +7,8 @@
 
 
 
-  function __construct($coul, $j){
-    $this -> couleur = $coul;
+  function __construct($j){
     $this -> joueur = $j;
-  }
-
-
-
-  function getCouleur(){
-    return $this -> couleur;
   }
 	  
   function getJoueur(){

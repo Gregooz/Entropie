@@ -13,29 +13,32 @@ require_once('joueur.class.php');
 	private $tour;
 	
 
-
+	/**
+	 *Constructeur de la classe Plateau
+	 *@param $j1 : Joueur 1, $j2 : Joueur 2
+	 *@return void
+	*/
 function __construct($j1, $j2){
-	$this -> joueur1 = $j1;
+	$this -> joueur1 = $j1; 
 	$this -> joueur2 = $j2;
-	$this -> tour = 0;
 	$plateau = array();
 
-	
-	for($i=0;$i<5;$i++){
+	//Initilaise l'ensemble des cases du plateau
+	for($i=0;$i<5;$i++){ // 5 Lignes / Taille du plateau 5x5
 		$y=0;
 		if($i==0){
-		$ligne = array(new casep($i, $y++, new pion("Jaune", $this->joueur1)));
-		$ligne[] = new casep($i, $y++, new pion("Jaune", $this->joueur1));
-		$ligne[] = new casep($i, $y++,new pion("Jaune", $this->joueur1));
-		$ligne[] = new casep($i, $y++, new pion("Jaune", $this->joueur1));
-		$ligne[] = new casep($i, $y++, new pion("Jaune", $this->joueur1));
+		$ligne = array(new casep($i, $y++, new pion($this->joueur1)));  // Ajoute dans la matrice une case avec ses positions X, Y et un pion. Pion qui dispose d'un joueur ou non.
+		$ligne[] = new casep($i, $y++, new pion($this->joueur1));
+		$ligne[] = new casep($i, $y++,new pion($this->joueur1));
+		$ligne[] = new casep($i, $y++, new pion($this->joueur1));
+		$ligne[] = new casep($i, $y++, new pion($this->joueur1));
 		}
 		if($i==1){
-		$ligne = array(new casep($i, $y++, new pion("Jaune", $this->joueur1)));
+		$ligne = array(new casep($i, $y++, new pion($this->joueur1)));
 		$ligne[] = new casep($i, $y++, null);
 		$ligne[] = new casep($i, $y++, null);
 		$ligne[] = new casep($i, $y++, null);
-		$ligne[] = new casep($i, $y++, new pion("Jaune", $this->joueur1));
+		$ligne[] = new casep($i, $y++, new pion($this->joueur1));
 		}
 		if($i==2){
 		$ligne = array(new casep($i, $y++, null));
@@ -45,18 +48,18 @@ function __construct($j1, $j2){
 		$ligne[] = new casep($i, $y++, null);
 		}
 		if($i==3){
-		$ligne = array(new casep($i, $y++, new pion("Rouge", $this->joueur2)));
+		$ligne = array(new casep($i, $y++, new pion($this->joueur2)));
 		$ligne[] = new casep($i, $y++, null);
 		$ligne[] = new casep($i, $y++, null);
 		$ligne[] = new casep($i, $y++, null);
-		$ligne[] = new casep($i, $y++, new pion("Rouge", $this->joueur2));
+		$ligne[] = new casep($i, $y++, new pion($this->joueur2));
 		}
 		if($i==4){
-		$ligne = array(new casep($i, $y++, new pion("Rouge", $this->joueur2)));
-		$ligne[] = new casep($i, $y++, new pion("Rouge", $this->joueur2));
-		$ligne[] = new casep($i, $y++,new pion("Rouge", $this->joueur2));
-		$ligne[] = new casep($i, $y++, new pion("Rouge", $this->joueur2));
-		$ligne[] = new casep($i, $y++, new pion("Rouge", $this->joueur2));
+		$ligne = array(new casep($i, $y++, new pion($this->joueur2)));
+		$ligne[] = new casep($i, $y++, new pion($this->joueur2));
+		$ligne[] = new casep($i, $y++,new pion($this->joueur2));
+		$ligne[] = new casep($i, $y++, new pion($this->joueur2));
+		$ligne[] = new casep($i, $y++, new pion($this->joueur2));
 		}
 
 		$this-> plateau[$i] = $ligne;
@@ -125,37 +128,50 @@ function __construct($j1, $j2){
 		  return $this->plateau[$y][$x];
 	  }
 	  
-	  
+	/**
+	 *Fonction qui verifie si un pion est isolée selon la règle du jeu
+	 *@param $case : Case 
+	 *@return Boolean
+	*/
 	  function estIsolee($case){
+		  //On vérifie que la case dispose bien d'un pion
 		  if($case->getPion() == null){
 			  return false;
-			  exit();
 		  }
 		  $seul = true;
 		  $x = $case->getX();
 		  $y = $case->getY();
 		  
+		  //On regarde pour chaques colonne
 		  for($i=0;$i<3;$i++){
+			 //Pour chaque lignes
 			 for($j=0;$j<3;$j++){
-				 
+				 //On vérifie que les coordonnées calculées ne sont pas hors du plateau 
 				 if($x-1+$i > -1 && $x-1+$i < 5 && $y-1+$j > -1 && $y-1+$j < 5 ){
-					
+					//On regarde avec les nouvelles coordonnées les cases alentours : on vérifie si un pion est présent dans ces cases
 					if($this->plateau[$y-1+$j][$x-1+$i]->getPion() != null){
+						//La case qu'on regarde ne doit pas être la case fournit en paramètres
 						if(!($i == 1 && $j == 1)){
-							return false;
-							exit();	
+							//Si un pion est présent alors la case n'est pas isolé, on revoit faux
+							return false;	
 						}
 					}
 				 } 
 			 }
 		  }
+		  //Sinon la case est isolé, on renvoit vrai
 		  return true;  
 	  }
 	  
+	/**
+	 *Fonction qui vérifie si un pion est seul (Pas isolé mais pas de pion de même couleur autour de lui) selon la règle du jeu
+	 *@param $case : Case
+	 *@return Boolean
+	*/
 	  function estSeul($case){
+		  //Même principe que la fonction précédente : On regarde autour de la case et on recherche un pion du même joueur que celle qui nous sert de repère
 		  if($case->getPion() == null){
 			  return false;
-			  exit();
 		  }
 		  $seul = true;
 		  $x = $case->getX();
@@ -168,8 +184,7 @@ function __construct($j1, $j2){
 					
 					if($this->plateau[$y-1+$j][$x-1+$i]->getPion() != null && $this->plateau[$y-1+$j][$x-1+$i]->getPion()->getJoueur() == $this->getJoueurJoue()){
 						if(!($i == 1 && $j == 1)){
-							return false;
-							exit();	
+							return false;	
 						}
 					}
 				 } 
@@ -178,11 +193,17 @@ function __construct($j1, $j2){
 		  return true;  
 	  }
 	  
-	  
+	/**
+	 *Fonction qui retourne l'ensemble des pions isolées d'un joueur
+	 *@param $joueur : Joueur
+	 *@return $tab : Array
+	*/	  
 	  function listePionIsole($joueur){
 		  $tab[0]=null;
 		  $t=0;
+		//On parcourt le plateau en Ligne
 		for($i=0;$i<5;$i++){
+			//On parcourt le plateau en Colonne
 			for($j=0;$j<5;$j++){
 				if($this->plateau[$i][$j]->getPion() != null && $this->plateau[$i][$j]->getPion()->getJoueur() == $joueur && $this->estIsolee($this->plateau[$i][$j]) == true ){
 					$tab[$t++]=$this->plateau[$i][$j];
@@ -193,6 +214,11 @@ function __construct($j1, $j2){
 		return $tab;
 	  }
 	  
+	/**
+	 *Fonction qui retourne l'ensemble des pions Seul d'un joueur
+	 *@param $joueur : Joueur
+	 *@return $tab : Array
+	*/	  
 	  function listePionSeul($joueur){
 		  $tab[0]=null;
 		  $t=0;
@@ -364,7 +390,7 @@ function affichage(){
 						$tab2 = $this->listePionSeul($this->getJoueurJoue());
 						
 						if($tab2[0] != null && $this->caseExiste($tab2, $this->plateau[$i][$x]) == true ){
-							$plateauhtml = $plateauhtml . "\n <td width="."100px height="."100px><div class=cercle style=background:".$this->plateau[$i][$x]->getPion()->getJoueur()->getCouleur().">".$this->plateau[$i][$x]->getPion()->getJoueur()->getIni()."</div>" . "</td>";	
+							$plateauhtml = $plateauhtml . "\n <td width="."100px height="."100px><div class=cercle2 style=background:".$this->plateau[$i][$x]->getPion()->getJoueur()->getCouleur().">".$this->plateau[$i][$x]->getPion()->getJoueur()->getIni()."</div>" . "</td>";	
 						}
 						
 						else if($this->deplacementPossible($this->plateau[$i][$x]) == "vide"){
