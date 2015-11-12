@@ -39,7 +39,11 @@ comme voisin un pion adverse.
 #Réalisation	
 --------------	
 
-Sur ce Git est présent un script PHP modélisant le jeu de l'entropie.
+Sur ce Git est présent un script PHP modélisant le jeu de l'entropie.	
+	
+	
+	
+	
 		
 ------------------------------------------------------------	
 Noé Le Carduner && Grégoire Decamp.
