@@ -48,7 +48,7 @@ if(!isset($_SESSION['plateau']) && !isset($_POST['joueur1']) && !isset($_POST['j
 				<input type="submit" class="btn btn-primary btn-large btn-block" value="Commencer"/>
 			</div>
 			</form>
-			<div class="real">Réalisé par Noé Le Carduner & Grégoire Decamp.</div>
+			<div class="real">Réalisé par Noé Le Carduner & Grégoire Decamp avec <a href="https://github.com/Gregooz/Entropie">Github.com</a></div>
 		</div>
 	</div>
 	<?php
