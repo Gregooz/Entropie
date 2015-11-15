@@ -39,7 +39,7 @@ comme voisin un pion adverse.
 #Réalisation	
 --------------	
 
-Sur ce Git est présent un script PHP modélisant le jeu de l'entropie.	
+Dans le cadre de notre module de programmation web coté serveur, nous avons reçu un projet consistant à développer une application Web permettant de jouer au jeu nommé Entropie	 Ce jeu est défini par un plateau de 5 fois 5 cases comprenant 14 pions pour deux joueurs. Pour réaliser ce jeu, il nous a été demandé de réaliser une seule page PHP qui sera rechargée à chaque fois qu’un joueur effectue un déplacement	 Il nous a aussi été demandé de construire un code modulaire comportant donc plusieurs classes et d’utiliser la technique des URL longues ainsi que d’utiliser le système de session.		
 	
 #####[Démo : Entropie](http://supern0n0.xyz/Entropie/entropie.php)	
 	
