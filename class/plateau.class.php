@@ -10,7 +10,6 @@ require_once('joueur.class.php');
    	private $joueur1;
    	private $joueur2;
    	private $plateau;
-	private $tour;
 	
 
 	/**
@@ -78,11 +77,7 @@ function __construct($j1, $j2){
 		  $this->plateau[$y][$x]->setPion(null);
 		  return $p;
 	  }
-	  
-	  function getTour(){
-		  return $this -> tour;
-	  }
-	  
+	 
 	  function estGagne(){
 		  return false;
 	  }
@@ -406,7 +401,7 @@ function __construct($j1, $j2){
 	
 	
 
-	$plateauhtml ="<meta http-equiv=content-type content=text/html; charset=utf-8 /> <link rel=stylesheet type=text/css href=style.css> <body> <div class=login> <div class=login-screen> <div class=app-title> <table border="."10px"." align=center>";
+	$plateauhtml ="<meta http-equiv=content-type content=text/html; charset=utf-8 /> <link rel=stylesheet type=text/css href=style.css><title>Entropie</title> <body> <div class=login> <div class=login-screen> <div class=app-title> <table border="."10px"." align=center>";
 
 	$affmessage = false;
 	
@@ -497,7 +492,7 @@ function __construct($j1, $j2){
 	*/	 
   function affichage2(){
 	  
-	 $plateauhtml = "<meta http-equiv=content-type content=text/html; charset=utf-8 /> <link rel=stylesheet type=text/css href=style.css> <body> <div class=login> <div class=login-screen> <div class=app-title> <table align=center>";
+	 $plateauhtml = "<meta http-equiv=content-type content=text/html; charset=utf-8 /> <link rel=stylesheet type=text/css href=style.css><title>Entropie</title> <body> <div class=login> <div class=login-screen> <div class=app-title> <table align=center>";
 	
 	//On parcourt le plateau de colonne en colonne
 	for($z=0;$z<5;$z++){
